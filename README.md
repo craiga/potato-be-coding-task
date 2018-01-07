@@ -11,6 +11,8 @@ Ensure that your code is committed with meaningful commit messages; show your wo
 
 When you are finished please provide us with a URL to a repository where we can check out your code.
 
+Note that this project only works in **Python 2**; it will not work with Python 3.
+
 ## Setup
 
 - Run `./install_deps` (this will pip install requirements, and download the App Engine SDK)
