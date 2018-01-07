@@ -137,6 +137,8 @@ if DEBUG:
     CSP_STYLE_SRC = ("'self'", "'unsafe-inline'")
     CSP_IMG_SRC += ("*.placehold.it",)
 
+from crispy_forms_foundation.settings import *
+
 CRISPY_TEMPLATE_PACK = 'foundation-5'
 
 AUTH_USER_MODEL = 'djangae.GaeUser'
