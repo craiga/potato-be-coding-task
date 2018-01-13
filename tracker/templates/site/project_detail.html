@@ -7,7 +7,7 @@
 	</div>
 	<div class="row">
 		{% if tickets %}
-			<table>
+			<table id="tickets">
 				<thead>
 					<tr>
 						<th width="1200">Title</th>
@@ -38,7 +38,7 @@
 				</tbody>
 			</table>
 		{% else %}
-			<p class="panel">No tickets have been created for this project</p>
+			<p class="panel" id="tickets">No tickets have been created for this project</p>
 		{% endif %}
 	</div>
 	<div class="row">
