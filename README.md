@@ -30,7 +30,7 @@ The application is written using the [Djangae](http://djangae.readthedocs.org/en
 
 ## Tasks - new features
 
-- On the ticket list page if there are no tickets show "No tickets have been created for this project"
+- ~~On the ticket list page if there are no tickets show "No tickets have been created for this project"~~
 - On the ticket list page if there are no users assigned to a ticket show "No assigned users" in the "assigned" field
 - On the project list page, add a new column showing the count of how many tickets there are in each project
 - On the project list page, projects that the user has assigned tickets on should be shown above the other projects
