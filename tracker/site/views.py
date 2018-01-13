@@ -1,3 +1,5 @@
+import copy
+
 from django.core.urlresolvers import reverse
 from django.contrib.auth.decorators import login_required
 from django.http import Http404
@@ -47,6 +49,27 @@ my_tickets_view = MyTicketsView.as_view()
 class ProjectListView(ListView):
     model = Project
     template_name = "site/project_list.html"
+    context_object_name = 'projects'
+
+    def get_context_data(self, **kwargs):
+        """
+        Add data to project list context.
+
+        Add projects with tickets assigned to the logged in user tickets as
+        user_projects to the context.
+        """
+        user = self.request.user
+        if hasattr(user, 'tickets'):
+            user_project_ids = (t.project.id for t in user.tickets.all())
+            user_projects = Project.objects.filter(id__in=user_project_ids)
+        else:
+            user_projects = ()
+
+        context = super(ProjectListView, self).get_context_data(**kwargs)
+        context['user'] = user
+        context['user_projects'] = user_projects
+
+        return context
 
 
 project_list_view = ProjectListView.as_view()

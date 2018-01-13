@@ -2,30 +2,12 @@
 
 {% block content %}
 <div class="large-12 large-centered columns">
-	<div class="row">
-		<table>
-			<thead>
-				<tr>
-					<th width="1200">Project title</th>
-					<th>Tickets</th>
-					<th></th>
-				</tr>
-			</thead>
-			<tbody>
-				{% for project in object_list %}
-				<tr>
-					<td><a href="{% url "project-detail" project_id=project.pk %}">{{ project.title }}</a></td>
-					<td><a href="{% url "project-detail" project_id=project.pk %}#tickets">{{ project.tickets.count }}</a></td>
-					<td>
-						<a href="{% url "project-update" project_id=project.pk %}">
-							<i class="fi-pencil"></i>
-						</a>
-					</td>
-				</tr>
-				{% endfor %}
-			</tbody>
-		</table>
-	</div>
+	{% if user_projects %}
+		<h1>Projects with tickets for {{ user.email }}</h1>
+		{% include "site/_project_table.html" with projects=user_projects %}
+	{% endif %}
+	<h1>All Projects</h1>
+	{% include "site/_project_table.html" with projects=projects %}
 	<div class="row">
 		<p><a href="{% url "project-create" %}" class="button">Create project</a></p>
 	</div>
