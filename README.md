@@ -25,7 +25,7 @@ The application is written using the [Djangae](http://djangae.readthedocs.org/en
 
 - ~~Internal server error occurs when any form is rendered~~
 - ~~Update a ticket - an internal server error occurs~~
-- It is possible to move a ticket from one project to another by altering the URL on the edit ticket page. This should not be allowed
+- ~~It is possible to move a ticket from one project to another by altering the URL on the edit ticket page. This should not be allowed~~
 - Tickets with long descriptions break the layout
 
 ## Tasks - new features

@@ -1,5 +1,6 @@
 from django.core.urlresolvers import reverse
 from django.contrib.auth.decorators import login_required
+from django.http import Http404
 from django.shortcuts import get_object_or_404
 from django.views.generic import TemplateView, CreateView, UpdateView, ListView
 
@@ -128,6 +129,15 @@ class UpdateTicketView(ProjectContextMixin, UpdateView):
     form_class = TicketForm
     pk_url_kwarg = 'ticket_id'
     template_name = "site/ticket_form.html"
+
+    def get_context_data(self, **kwargs):
+        context_data = super(UpdateTicketView, self).get_context_data(**kwargs)
+
+        # Ensure the instance is being referenced as part of its project.
+        if context_data[u'object'].project != context_data['current_project']:
+            raise Http404('Ticket not part of project.')
+
+        return context_data
 
     def get_success_url(self):
         return reverse("project-detail", kwargs={"project_id": self.kwargs['project_id']})
