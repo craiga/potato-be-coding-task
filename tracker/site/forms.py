@@ -41,8 +41,16 @@ class ProjectForm(BaseTrackerForm):
         instance.created_by = self.user
 
 
+class AssigneesField(forms.ModelMultipleChoiceField):
+    """Custom field for ticket assignees."""
+
+    def label_from_instance(self, obj):
+        """Return email address as label for each assignee."""
+        return obj.email
+
+
 class TicketForm(BaseTrackerForm):
-    assignees = forms.ModelMultipleChoiceField(queryset=None, required=False)
+    assignees = AssigneesField(queryset=None, required=False)
 
     class Meta:
         model = Ticket
