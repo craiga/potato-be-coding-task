@@ -22,6 +22,8 @@
 						<td>
 						{% for user in ticket.assignees.all %}
 							{{ user.email }}{% if not forloop.last %},{% endif %}
+						{% empty %}
+							No assigned users
 						{% endfor %}
 						</td>
 						<td>
