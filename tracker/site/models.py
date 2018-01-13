@@ -14,6 +14,8 @@ class Project(TimeStampedModel):
 
 
 class Ticket(TimeStampedModel):
+    SHORT_DESCRIPTION_MAX_LENGTH = 200
+
     title = models.CharField(max_length=200)
     description = models.TextField(blank=True)
     project = models.ForeignKey(Project, related_name="tickets")
@@ -24,3 +26,13 @@ class Ticket(TimeStampedModel):
 
     def __str__(self):
         return self.title
+
+    @property
+    def short_description(self):
+        """A shorterned version of description."""
+        trunc = '...'
+        real_max_length = self.SHORT_DESCRIPTION_MAX_LENGTH - len(trunc)
+        if len(self.description) < real_max_length:
+            return self.description
+
+        return self.description[0:real_max_length] + trunc
