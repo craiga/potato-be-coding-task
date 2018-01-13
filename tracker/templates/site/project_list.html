@@ -15,7 +15,7 @@
 				{% for project in object_list %}
 				<tr>
 					<td><a href="{% url "project-detail" project_id=project.pk %}">{{ project.title }}</a></td>
-					<td><a href="{% url "project-detail" project_id=project.pk %}">{{ project.tickets.count }}#tickets</a></td>
+					<td><a href="{% url "project-detail" project_id=project.pk %}#tickets">{{ project.tickets.count }}</a></td>
 					<td>
 						<a href="{% url "project-update" project_id=project.pk %}">
 							<i class="fi-pencil"></i>
